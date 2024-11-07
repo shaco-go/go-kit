@@ -1,4 +1,10 @@
 # go 工具
+
+使用
+```go
+go get -u github.com/shaco-go/go-kit
+```
+
 ## logc
 ```yaml
 # 日志配置
