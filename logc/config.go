@@ -69,21 +69,25 @@ type File struct {
 }
 
 // ConvChannel 转换
-func ConvChannel(channel string) Channel {
-	switch strings.ToLower(channel) {
-	case "console":
-		return ConsoleChannel
-	case "file":
-		return FileChannel
-	case "lark":
-		return LarkChannel
-	case "dingtalk":
-		return DingTalkChannel
-	case "wecom":
-		return WeComChannel
-	default:
-		return ConsoleChannel
+func ConvChannel(channel []string) []Channel {
+	var c []Channel
+	for _, item := range channel {
+		switch strings.ToLower(item) {
+		case "console":
+			c = append(c, ConsoleChannel)
+		case "file":
+			c = append(c, FileChannel)
+		case "lark":
+			c = append(c, LarkChannel)
+		case "dingtalk":
+			c = append(c, DingTalkChannel)
+		case "wecom":
+			c = append(c, WeComChannel)
+		default:
+			panic("unknown channel")
+		}
 	}
+	return c
 }
 
 // ConvEnv 转换
