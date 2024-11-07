@@ -7,13 +7,13 @@ import (
 	"os"
 )
 
-func New(conf *config) *zap.Logger {
+func New(conf *Config) *zap.Logger {
 	logc := &Logc{Conf: conf}
 	return logc.NewZap()
 }
 
 type Logc struct {
-	Conf *config
+	Conf *Config
 }
 
 // EncoderConfig zap EncoderConfig

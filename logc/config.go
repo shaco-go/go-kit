@@ -22,7 +22,7 @@ const (
 	Prod
 )
 
-type config struct {
+type Config struct {
 	Env     Env           `json:"env" yaml:"env"`
 	Level   zapcore.Level `json:"level" yaml:"level"`
 	Channel []Channel     `json:"channel" yaml:"channel"`
