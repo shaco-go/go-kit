@@ -52,25 +52,3 @@ func (l *Logx) Panic(ctx context.Context, msg string, fields ...zap.Field) {
 func (l *Logx) Fatal(ctx context.Context, msg string, fields ...zap.Field) {
 	l.WithContext(ctx).Fatal(msg, fields...)
 }
-
-func (l *Logx) Debugf(ctx context.Context, err error) {
-	l.WithContext(ctx).Sugar().Debugf("%+v", err)
-}
-func (l *Logx) Infof(ctx context.Context, err error) {
-	l.WithContext(ctx).Sugar().Infof("%+v", err)
-}
-func (l *Logx) Warnf(ctx context.Context, err error) {
-	l.WithContext(ctx).Sugar().Warnf("%+v", err)
-}
-func (l *Logx) Errorf(ctx context.Context, err error) {
-	l.WithContext(ctx).Sugar().Errorf("%+v", err)
-}
-func (l *Logx) DPanicf(ctx context.Context, err error) {
-	l.WithContext(ctx).Sugar().DPanicf("%+v", err)
-}
-func (l *Logx) Panicf(ctx context.Context, err error) {
-	l.WithContext(ctx).Sugar().Panicf("%+v", err)
-}
-func (l *Logx) Fatalf(ctx context.Context, err error) {
-	l.WithContext(ctx).Sugar().Fatalf("%+v", err)
-}
