@@ -14,31 +14,31 @@ type config struct {
 type Config struct {
 	Name    string
 	Debug   bool
-	Level   string   `json:"level" yaml:"level"`
-	Channel []string `json:"channel" yaml:"channel"`
-	Console Console  `json:"console" yaml:"console"`
-	File    File     `json:"file" yaml:"file"`
-	Lark    Lark     `json:"lark" yaml:"lark"`
-	Server3 Server3  `json:"server3" yaml:"server3"`
+	Level   string
+	Channel []string
+	Console Console
+	File    File
+	Lark    Lark
+	Server3 Server3
 }
 
 type Console struct {
-	Level string `json:"level" yaml:"level"`
+	Level string
 }
 
 type File struct {
 	*lumberjack.Logger
-	Level string `json:"level" yaml:"level"`
+	Level string
 }
 
 type Lark struct {
-	Level    string `json:"level" yaml:"level"`
-	Webhook  string `json:"webhook" yaml:"webhook"`
-	Detailed bool   `json:"detailed" yaml:"detailed"`
+	Level    string
+	Webhook  string
+	Detailed bool
 }
 
 type Server3 struct {
-	Level    string `json:"level" yaml:"level"`
-	SendKey  string `json:"sendkey" yaml:"sendkey"`
-	Detailed bool   `json:"detailed" yaml:"detailed"`
+	Level    string
+	SendKey  string
+	Detailed bool
 }

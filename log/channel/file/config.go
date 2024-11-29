@@ -7,5 +7,5 @@ import (
 
 type Config struct {
 	*lumberjack.Logger
-	Level zapcore.Level `json:"level" yaml:"level"`
+	Level zapcore.Level
 }

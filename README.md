@@ -17,7 +17,7 @@ go get -u github.com/shaco-go/go -kit
 默认的通道为`console` `file`
 
 ```go
-logger := log.New()
+logger := log.Default().Zap()
 ```
 
 ### 根据yaml配置文件实例化
