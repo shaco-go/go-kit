@@ -78,7 +78,7 @@ func WithLarkChannel(webhook string, args ...lark.Options) Option {
 	}
 }
 
-func WithServerJiang3Channel(sendKey string, args ...server3.Options) Option {
+func WithServer3Channel(sendKey string, args ...server3.Options) Option {
 	return func(l *Logger) {
 		l.Channel = append(l.Channel, Server3Channel)
 		l.Server3Conf = server3.Config{

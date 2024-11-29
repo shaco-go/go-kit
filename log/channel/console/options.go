@@ -7,7 +7,7 @@ type Options func(*Config)
 func WithConsoleLevel(level string) Options {
 	return func(c *Config) {
 		parseLevel, err := zapcore.ParseLevel(level)
-		if err == nil && c.Level.Enabled(parseLevel) {
+		if err == nil {
 			c.Level = parseLevel
 		}
 	}

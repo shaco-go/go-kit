@@ -1,7 +1,6 @@
 package console
 
 import (
-	"fmt"
 	"github.com/shaco-go/go-kit/log/channel"
 	"go.uber.org/zap/zapcore"
 	"os"
@@ -20,13 +19,4 @@ func New(conf Config) zapcore.Core {
 		encoder = zapcore.NewJSONEncoder(ec)
 	}
 	return zapcore.NewCore(encoder, zapcore.AddSync(os.Stdout), conf.Level)
-}
-
-type ConsoleEncoder struct {
-}
-
-func (c ConsoleEncoder) Encode(i interface{}) error {
-	fmt.Println(i)
-	return nil
-	panic("implement me")
 }
