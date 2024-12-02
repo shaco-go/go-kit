@@ -1,4 +1,4 @@
-package log
+package core
 
 import (
 	"bytes"
@@ -82,24 +82,4 @@ func (c *Channel) unmarshalText(text []byte) bool {
 		return false
 	}
 	return true
-}
-
-// Set 设置通道的值。
-func (c *Channel) Set(s string) error {
-	return c.UnmarshalText([]byte(s))
-}
-
-// Get 获取通道的值。
-func (c *Channel) Get() interface{} {
-	return *c
-}
-
-// Enabled 返回给定通道是否有效。
-func (c Channel) Enabled(ch Channel) bool {
-	return ch >= c
-}
-
-// ChannelEnabler 决定给定通道是否启用。
-type ChannelEnabler interface {
-	Enabled(Channel) bool
 }

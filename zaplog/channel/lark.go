@@ -1,35 +1,39 @@
-package lark
+package channel
 
 import (
 	"encoding/json"
 	"fmt"
 	"github.com/duke-git/lancet/v2/maputil"
 	"github.com/panjf2000/ants/v2"
-	"github.com/shaco-go/go-kit/log/channel"
 	"github.com/shaco-go/go-kit/notify/lark"
+	"github.com/shaco-go/go-kit/zaplog/core"
 	"github.com/spf13/cast"
 	"go.uber.org/zap/zapcore"
 )
 
-func New(conf Config) zapcore.Core {
-	config := channel.NewEncoderConfig(false)
+func NewLarkChannel(conf *core.Config) zapcore.Core {
+	config := core.NewEncoderConfig(false)
 	encoder := zapcore.NewJSONEncoder(config)
-	return zapcore.NewCore(encoder, zapcore.AddSync(NewWriter(conf, config)), conf.Level)
+	level := conf.Level
+	if conf.Level.Enabled(conf.LarkConf.Level) {
+		level = conf.Server3Conf.Level
+	}
+	return zapcore.NewCore(encoder, zapcore.AddSync(NewWriterLark(conf.LarkConf, config)), level)
 }
 
-func NewWriter(conf Config, encoder zapcore.EncoderConfig) *Writer {
-	return &Writer{
+func NewWriterLark(conf core.LarkConfig, encoder zapcore.EncoderConfig) *WriterLark {
+	return &WriterLark{
 		conf:        conf,
 		encoderConf: encoder,
 	}
 }
 
-type Writer struct {
-	conf        Config
+type WriterLark struct {
+	conf        core.LarkConfig
 	encoderConf zapcore.EncoderConfig
 }
 
-func (l *Writer) Write(p []byte) (int, error) {
+func (l *WriterLark) Write(p []byte) (int, error) {
 	err := ants.Submit(func() {
 		var data map[string]any
 		_ = json.Unmarshal(p, &data)
