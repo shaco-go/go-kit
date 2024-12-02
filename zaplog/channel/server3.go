@@ -15,11 +15,7 @@ import (
 func NewServer3Channel(conf *core.Config) zapcore.Core {
 	config := core.NewEncoderConfig(false)
 	encoder := zapcore.NewJSONEncoder(config)
-	level := conf.Level
-	if conf.Level.Enabled(conf.Server3Conf.Level) {
-		level = conf.Server3Conf.Level
-	}
-	return zapcore.NewCore(encoder, zapcore.AddSync(NewWriterServer3(conf.Server3Conf, config)), level)
+	return zapcore.NewCore(encoder, zapcore.AddSync(NewWriterServer3(conf.Server3Conf, config)), conf.Server3Conf.Level)
 }
 
 func NewWriterServer3(conf core.Server3Config, encoder zapcore.EncoderConfig) *WriterServer3 {

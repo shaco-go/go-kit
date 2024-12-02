@@ -14,11 +14,7 @@ import (
 func NewLarkChannel(conf *core.Config) zapcore.Core {
 	config := core.NewEncoderConfig(false)
 	encoder := zapcore.NewJSONEncoder(config)
-	level := conf.Level
-	if conf.Level.Enabled(conf.LarkConf.Level) {
-		level = conf.Server3Conf.Level
-	}
-	return zapcore.NewCore(encoder, zapcore.AddSync(NewWriterLark(conf.LarkConf, config)), level)
+	return zapcore.NewCore(encoder, zapcore.AddSync(NewWriterLark(conf.LarkConf, config)), conf.LarkConf.Level)
 }
 
 func NewWriterLark(conf core.LarkConfig, encoder zapcore.EncoderConfig) *WriterLark {

@@ -18,9 +18,5 @@ func NewConsoleChannel(conf *core.Config) zapcore.Core {
 	} else {
 		encoder = zapcore.NewJSONEncoder(ec)
 	}
-	level := conf.Level
-	if conf.Level.Enabled(conf.ConsoleConf.Level) {
-		level = conf.Server3Conf.Level
-	}
-	return zapcore.NewCore(encoder, zapcore.AddSync(os.Stdout), level)
+	return zapcore.NewCore(encoder, zapcore.AddSync(os.Stdout), conf.ConsoleConf.Level)
 }

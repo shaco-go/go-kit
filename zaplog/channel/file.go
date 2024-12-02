@@ -14,9 +14,5 @@ func NewFileChannel(conf *core.Config) zapcore.Core {
 	} else {
 		encoder = zapcore.NewJSONEncoder(config)
 	}
-	level := conf.Level
-	if conf.Level.Enabled(conf.Server3Conf.Level) {
-		level = conf.Server3Conf.Level
-	}
-	return zapcore.NewCore(encoder, zapcore.AddSync(conf.FileConf.Logger), level)
+	return zapcore.NewCore(encoder, zapcore.AddSync(conf.FileConf.Logger), conf.FileConf.Level)
 }
